@@ -8,10 +8,17 @@ services:
     web:
         build: .
         command: python /code/manage.py runserver 0.0.0.0:8000
-        # Django settings
+        # Django and database env variables
         environment:
+            # Django env variables to use in settings.py
             - SECRET_KEY=8aixraj!ntu&cwcd9ddz10#_7%4xy+wvc*%^@q@r=52@minrin
             - DEBUG=1
+            # Postgres env variables to use in settings.py
+            - DB_NAME=devhub
+            - DB_USER=devhub
+            - DB_PASSWORD=W+5wzmhtD>s@Djpb
+            - DB_HOST=db
+            - DB_PORT=5432 # default port for PostgreSQL
         ports:
             - 8000:8000
         volumes:
@@ -23,8 +30,9 @@ services:
         image: postgres:12
         # PostgreSQL settings to use it as database in the Django project
         environment: 
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=devhub
+            - POSTGRES_USER=devhub
+            - POSTGRES_PASSWORD=W+5wzmhtD>s@Djpb # just random password
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
