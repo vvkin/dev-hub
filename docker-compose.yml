@@ -4,19 +4,29 @@
 version: '3.7'
 
 services:
+    # Django configuration
     web:
         build: .
         command: python /code/manage.py runserver 0.0.0.0:8000
+        # Django settings
+        environment:
+            - SECRET_KEY=8aixraj!ntu&cwcd9ddz10#_7%4xy+wvc*%^@q@r=52@minrin
+            - DEBUG=1
         ports:
             - 8000:8000
         volumes:
             - .:/code/
         depends_on:
             - db
+    # Postgres configuration
     db:
         image: postgres:12
+        # PostgreSQL settings to use it as database in the Django project
+        environment: 
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
         volumes:
-            - postgres_data:/var/lib/postgresql/postgres_data
+            - postgres_data:/var/lib/postgresql/data
 
 volumes:
     postgres_data:
