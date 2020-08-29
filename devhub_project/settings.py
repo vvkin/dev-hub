@@ -86,6 +86,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Settings to allow login with email
+AUTHENTICATION_BACKENDS = (
+    "users.auth.EmailOrUsernameBackend",
+)
 
 # Internationalization
 

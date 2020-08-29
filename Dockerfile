@@ -15,7 +15,7 @@ WORKDIR /code/
 COPY Pipfile Pipfile.lock /code/
 
 # Install all dependencies from Pipfile.lock
-RUN pip install pipenv && pipenv install --system
+RUN pip install pipenv && pip install Pillow && pipenv install --system
 
 # All all code to docker container
 COPY . /code/
