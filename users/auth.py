@@ -1,6 +1,7 @@
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
 
+
 class EmailOrUsernameBackend(ModelBackend):
     """ 
     Class allows authentication with both username and email

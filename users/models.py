@@ -52,5 +52,3 @@ class Follower(models.Model):
 
     class Meta:
         db_table = 'user_follow_relation'
-
-
