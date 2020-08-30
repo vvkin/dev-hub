@@ -1,0 +1,16 @@
+<!-- Initial base.html for testing purposes -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+    </head>
+    <body>
+        <!-- Test login/logout -->
+        {% if user.is_authenticated %}
+            <h1>Hi, {{ user.username }} </h1>
+        {% else %}
+            <h1>You are not logged in!</h1>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

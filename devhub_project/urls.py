@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('users.urls')),
+    path('admin/', admin.site.urls), # Admin panel
+    path('accounts/', include('django.contrib.auth.urls')), # Auth system (registration, login etc)
+    path('users/', include('users.urls')), # All pages needed for user
+    path('', include('pages.urls')) # Some basic pages
 ]
