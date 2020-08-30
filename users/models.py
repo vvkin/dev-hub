@@ -1,13 +1,21 @@
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth import get_user_model
 
+
+class CustomUser(AbstractUser):
+    """User model that may be extended"""
+    pass
 
 class PublicInformation(models.Model):
-    """Public information about user"""
+    """
+    Public information about user.
+    Basic auth User model is used in many cases, so
+    it will be better to save additional information, that
+    can be large in another table
+    """
 
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE,
-        help_text="Primary key of user that holds current information"
-    )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     about_info = models.TextField(null=True, help_text="Information about user")
     profile_image = models.ImageField()
     posts_amount = models.PositiveIntegerField(default=0,
@@ -30,7 +38,7 @@ class PublicInformation(models.Model):
 class Interest(models.Model):
     """Users interests"""
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
         related_name="user_interests"
     )
     name = models.CharField(max_length=255)
@@ -47,7 +55,7 @@ class Follower(models.Model):
         FOLLOWING = 0 # User A is a follower of the user B, but
         FOLLOWED =  1 # user B is followed by user A
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     relation_type = models.IntegerField(choices=RelationType.choices)
 
     class Meta:
