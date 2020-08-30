@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import base_page_view
+from .views import home_page_view
 
 
 urlpatterns = [
-    path('', base_page_view, name='base_page'),
+    path('', home_page_view, name='home'),
     # Here will be patterns for some pages like main page, about page etc.
 ]
