@@ -7,32 +7,26 @@ class CustomUser(AbstractUser):
     """User model that may be extended"""
     pass
 
-class PublicInformation(models.Model):
+class UserProfile(models.Model):
     """
-    Public information about user.
+    General information about user.
     Basic auth User model is used in many cases, so
     it will be better to save additional information, that
     can be large in another table
     """
-
+    
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    about_info = models.TextField(null=True, help_text="Information about user")
-    profile_image = models.ImageField()
-    posts_amount = models.PositiveIntegerField(default=0,
-        help_text="Total amount of posts written by current user"
-    )
-    comments_amount = models.PositiveIntegerField(default=0,
-        help_text="Total amount of comments written by current user"
-    )
-    followers_amount = models.PositiveIntegerField(default=0,
-        help_text="Total amount of user followers"
-    )
-    following_amount = models.PositiveIntegerField(default=0,
-        help_text="Total amount of users those followed by current user"
-    )
+    bio = models.TextField(max_length=500, blank=True)
+    work_position = models.CharField(max_length=100, blank=True)
+    location = models.CharField(max_length=50, blank=True)
+    profile_image = models.ImageField(blank=True)
+    posts_amount = models.PositiveIntegerField(default=0)
+    comments_amount = models.PositiveIntegerField(default=0)
+    followers_amount = models.PositiveIntegerField(default=0)
+    following_amount = models.PositiveIntegerField(default=0)
 
     class Meta:
-        db_table = 'user_public_info'
+        db_table = 'user_profile'
 
 
 class Interest(models.Model):
