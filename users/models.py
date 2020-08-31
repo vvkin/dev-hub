@@ -7,14 +7,14 @@ class CustomUser(AbstractUser):
     """User model that may be extended"""
     pass
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     """
     General information about user.
     Basic auth User model is used in many cases, so
     it will be better to save additional information, that
     can be large in another table
     """
-    
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     work_position = models.CharField(max_length=100, blank=True)
