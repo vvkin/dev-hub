@@ -14,7 +14,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 def validate_request_and_login(request):
-    """ Retrieve data from request and login """
+    """Retrieve data from request and login"""
     data = request.POST
     form = SignUpForm(data)
     if form.is_valid():

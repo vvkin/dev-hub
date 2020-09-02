@@ -24,6 +24,7 @@ class Profile(models.Model):
     comments_amount = models.PositiveIntegerField(default=0)
     followers_amount = models.PositiveIntegerField(default=0)
     following_amount = models.PositiveIntegerField(default=0)
+    email_approver = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'user_profile'

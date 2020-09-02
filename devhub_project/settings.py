@@ -118,3 +118,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+# Email settings (for now it will be enough to use console email backend)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
